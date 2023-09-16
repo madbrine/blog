@@ -1,4 +1,4 @@
 export interface INavigateMenu {
-    isOpen: boolean;
-    setOpen: () => void;
+    isOpen: boolean,
+    setOpen: () => void,
 }

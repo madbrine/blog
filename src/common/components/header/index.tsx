@@ -27,7 +27,6 @@ function Header() {
                 direction="row"
                 sx={{
                     width: '640px',
-                    border: '1px solid red',
                     alignItems: 'center',
                     justifyContent: 'space-between'
                 }}

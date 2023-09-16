@@ -4,5 +4,4 @@
     margin-left: calc(50vw - 347px - var(--navigate-menu-width));
 
     justify-self: center;
-    border: solid 1px blue;
 }
