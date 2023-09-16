@@ -1,0 +1,8 @@
+.container {
+    border: solid 1px red;
+    width: var(--navigate-menu-width);
+    height: 100vh;
+}
+.empty-container {
+    width: var(--empty-navigate-menu-width)
+}
