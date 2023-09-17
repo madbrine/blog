@@ -1,13 +1,18 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import Header from '@/common/components/header'
 import NavigateMenu from '@/common/components/navigate-menu'
-import PostsList from '@/common/components/posts-list'
 import { useRouter } from 'next/router'
+import Publication from '@/common/components/publication'
+import { fakePostFullData } from '@/common/utils/fakePostFullData'
+import RightColumn from '@/common/components/right-column'
+import NewPost from '@/common/components/new-post'
 
-export default function PublicationId() {
+export default function newPost() {
+
     const router = useRouter();
-    const {id} = router.query;
+    const {id} = router.query
+
+    const data = fakePostFullData;
     return (
         <>
             <Head>
@@ -20,7 +25,8 @@ export default function PublicationId() {
                 <Header />
                 <div style={{ display: 'flex' }}>
                     <NavigateMenu />
-                    <PostsList />
+                    <NewPost/>
+                    <RightColumn/>
                 </div>
             </main>
         </>

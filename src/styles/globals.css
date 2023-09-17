@@ -5,11 +5,14 @@ html {
   --light-gray: #f2f2f2;
   --gray: #7e7e7e;
   --dark-gray: #595959;
+  --black: #111111;
 
-  --navigate-menu-width: 220px;
+  --navigate-menu-width: 320px;
   --empty-navigate-menu-width: calc(var(--navigate-menu-width) - 110px);
 
   --post-width: 640px;
+
+  --publication-max-width: 880px;
 
   background-color: var(--light-gray);
 }
@@ -44,12 +47,16 @@ html {
   font-size: 22px;
   font-weight: 500;
   line-height: 30px;
+
+  text-decoration: none;
 }
 .post-description {
   margin-bottom: 16px;
   
   font-size: 17px;
   line-height: 26px;
+
+  text-decoration: none;
 }
 .post-image {
   width: var(--post-width);
@@ -79,4 +86,15 @@ html {
 
   font-size: 15px;
   color: var(--gray);
+}
+.publication-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  max-width: var(--publication-max-width);
+
+  margin-top: 64px;
+  margin-left: -48px;
+  background-color: #fff;
 }

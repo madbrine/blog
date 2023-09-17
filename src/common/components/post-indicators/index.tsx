@@ -4,16 +4,16 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { IPostIndicators } from "@/common/types/IPostIndicators";
 
 function PostIndicators({
-    likes, 
-    comments, 
+    likes,
+    comments,
     views
-}: IPostIndicators){
+}: IPostIndicators) {
     return (
         <Stack
             direction="row"
             sx={{
                 alignItems: 'center',
-                p: '0px 16px 8px 16px'
+                pb: '8px'
             }}
         >
             <Box
@@ -33,23 +33,25 @@ function PostIndicators({
                     {likes}
                 </Button>
             </Box>
-            <Box
-                className="post-comments"
-            >
-                <Button
-                    className="post-likes"
-                    startIcon={
-                        <ChatBubbleOutlineIcon
-                            sx={{
-                                height: '24px',
-                                width: '24px',
-                            }}
-                        />
-                    }
+            {comments &&
+                <Box
+                    className="post-comments"
                 >
-                    {comments}
-                </Button>
-            </Box>
+                    <Button
+                        className="post-likes"
+                        startIcon={
+                            <ChatBubbleOutlineIcon
+                                sx={{
+                                    height: '24px',
+                                    width: '24px',
+                                }}
+                            />
+                        }
+                    >
+                        {comments}
+                    </Button>
+                </Box>
+            }
             <Box
                 className="post-views"
             >

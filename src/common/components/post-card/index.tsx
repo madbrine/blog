@@ -3,7 +3,7 @@ import useCategories from "@/common/hooks/useCategories";
 import { ICategory } from "@/common/types/ICategory";
 import { IPostData } from "@/common/types/IPostData";
 import dateFrom from "@/common/utils/dateFrom";
-import { Avatar, Button, Paper } from "@mui/material";
+import { Avatar, Button, Link, Paper } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import Image from 'next/image';
 import PostCategoryAndDate from '../post-category-and-date';
@@ -28,14 +28,21 @@ function PostCard({ data }: IProps) {
                     date={data.date}
                     update={data.update}
                 />
-                <PostHeader
-                    header={data.header}
-                    description={data.description}
-                />
-                <PostImage 
-                    imageUrl={data.imageUrl}
-                />
-                <PostIndicators 
+
+                <Link
+                    href={`/publication/${data.id}`}
+                    underline="none"
+                    color="black"
+                >
+                    <PostHeader
+                        header={data.header}
+                        description={data.description}
+                    />
+                    <PostImage
+                        imageUrl={data.imageUrl}
+                    />
+                </Link>
+                <PostIndicators
                     likes={data.likes}
                     comments={data.comments}
                     views={data.views}

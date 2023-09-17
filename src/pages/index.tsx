@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Header from '@/common/components/header'
 import NavigateMenu from '@/common/components/navigate-menu'
 import PostsList from '@/common/components/posts-list'
+import RightColumn from '@/common/components/right-column'
 
 export default function Home() {
   return (
@@ -14,10 +15,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header/>
-        <div style={{display: 'flex'}}>
-          <NavigateMenu/>
-          <PostsList/>
+        <Header />
+        <div style={{ display: 'flex' }}>
+          <NavigateMenu />
+          <PostsList />
+          <RightColumn />
         </div>
       </main>
     </>

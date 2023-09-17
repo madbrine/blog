@@ -1,5 +1,5 @@
 export interface IPostIndicators {
     likes: number;
-    comments: number;
+    comments?: number;
     views: number;
 }
