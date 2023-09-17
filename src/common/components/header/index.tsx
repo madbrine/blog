@@ -4,7 +4,7 @@ import {
     AiOutlineBell,
     AiOutlineUser
 } from 'react-icons/ai'
-import { Button, IconButton, InputBase, Paper, Stack, TextField } from '@mui/material';
+import { Box, Button, IconButton, InputBase, Paper, Stack, TextField } from '@mui/material';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import SearchIcon from '@mui/icons-material/Search';
@@ -13,7 +13,16 @@ import MenuButton from '../menu-button';
 
 function Header() {
     return (
-        <div className={s['container']}>
+        <Box
+            sx={{
+                position: 'fixed',
+                width: '100%',
+                zIndex: 10
+            }}
+        >
+        <Stack
+        direction="row"
+        className={s['container']}>
             <Stack
                 direction="row"
                 spacing={2}
@@ -83,7 +92,8 @@ function Header() {
                     Войти
                 </Button>
             </Stack>
-        </div>
+        </Stack>
+        </Box>
     )
 }
 

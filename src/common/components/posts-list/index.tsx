@@ -1,6 +1,6 @@
 import s from './styles.module.css';
 import { fakePostsData } from '@/common/utils/fakePostsData';
-import PostItem from '../post-item';
+import PostCard from '../post-card';
 
 
 function PostsList() {
@@ -13,10 +13,9 @@ function PostsList() {
                 data.map(post => {
                     console.log(post)
                     return (
-                        <PostItem data={post} key={post.id}/>
+                        <PostCard data={post} key={post.id}/>
                     )
-                }
-                )
+                })
             }
         </div>
     );

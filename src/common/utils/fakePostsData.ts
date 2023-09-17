@@ -1,6 +1,6 @@
-import { IPostsData } from "../types/IPostsData";
+import { IPostData } from "../types/IPostData";
 
-export const fakePostsData: IPostsData[] = [
+export const fakePostsData: IPostData[] = [
     {
         id: 1,
         category: 2,
@@ -20,7 +20,6 @@ export const fakePostsData: IPostsData[] = [
         update: '',
         header: 'Короче, кейс: Как InDrive построил бизнес на $1.2 млрд. А начинал с группы ВК в Якутии',
         description: 'Разбираем, как из маленького якутского ВК паблика для заказа такси сервис превратился в международную компанию, которая стоит $1.2 млрд.',
-        imageUrl: 'https://leonardo.osnova.io/3f3f344f-6a31-5859-b6c9-fb48588e16a5/-/preview/1200/-/format/webp/',
         views: 375,
         likes: 50,
         comments: 16,
