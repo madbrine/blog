@@ -35,7 +35,7 @@ function Publication({ data }: IProps) {
                     <PostCategoryAndDate
                         categoryValue={data.category}
                         date={data.date}
-                        update={data.update}
+                        update={data.updateDate}
                     />
                     <PostHeader
                         header={data.header}

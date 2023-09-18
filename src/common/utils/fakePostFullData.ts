@@ -5,7 +5,7 @@ export const fakePostFullData: IPostFullData = {
     id: 1,
     category: 2,
     date: '2023-09-17-00-05-32',
-    update: '2023-09-17-00-07-43',
+    updateDate: '2023-09-17-00-07-43',
     header: 'Короче, кейс: Как InDrive построил бизнес на $1.2 млрд. А начинал с группы ВК в Якутии',
     description: 'Разбираем, как из маленького якутского ВК паблика для заказа такси сервис превратился в международную компанию, которая стоит $1.2 млрд.',
     imageUrl: 'https://leonardo.osnova.io/3f3f344f-6a31-5859-b6c9-fb48588e16a5/-/preview/1200/-/format/webp/',

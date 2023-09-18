@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS posts (
     id INTEGER PRIMARY KEY,
     category INTEGER,
     date TEXT,
-    update TEXT,
+    updateDate TEXT,
     header TEXT,
     description TEXT,
     imageUrl TEXT,
@@ -43,11 +43,11 @@ export function getAllCategories(): ICategory[] {
 
 // Функция для добавления поста
 export function addPost(post: IPostFullData) {
-    const stmt = db.prepare('INSERT INTO posts (category, date, update, header, description, imageUrl, views, likes, comments, content, commentaries) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    const stmt = db.prepare('INSERT INTO posts (category, date, updateDate, header, description, imageUrl, views, likes, comments, content, commentaries) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
     stmt.run(
         post.category,
         post.date,
-        post.update,
+        post.updateDate,
         post.header,
         post.description,
         post.imageUrl,
@@ -61,7 +61,7 @@ export function addPost(post: IPostFullData) {
 
 // Функция для получения списка постов типа IPostData
 export function getAllPostsData(): IPostData[] {
-    const stmt = db.prepare('SELECT id, category, date, update, header, description, imageUrl, views, likes, comments FROM posts');
+    const stmt = db.prepare('SELECT id, category, date, updateDate, header, description, imageUrl, views, likes, comments FROM posts');
     const rows = stmt.all();
 
     return rows as IPostData[];
@@ -70,7 +70,7 @@ export function getAllPostsData(): IPostData[] {
 // Функция для получения конкретного поста по ID типа IPostFullData
 export function getPostById(id: number): IPostFullData | null {
     const stmt = db.prepare('SELECT * FROM posts WHERE id = ?');
-    const row = stmt.get(id);
+    const row = stmt.get(id) as { content: string; commentaries: string } | null;
 
     if (!row) {
         return null;

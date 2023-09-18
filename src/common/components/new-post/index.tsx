@@ -8,13 +8,18 @@ import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import ClearIcon from '@mui/icons-material/Clear';
 import moment from "moment";
 import { IPostFullData } from "@/common/types/IPostFullData";
-import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import axios from "axios";
+import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from 'next/router';
 
 function NewPost() {
 
-    const [isMainHeader, setMainHeader] = useState('')
-    const [isMainDescription, setMainDescription] = useState('')
-    const [isContent, setContent] = useState<{ type: 'h' | 'p' | 'q' | 'img'; data: string; }[]>([])
+    const router = useRouter();
+
+    const [isMainHeader, setMainHeader] = useState('');
+    const [isMainDescription, setMainDescription] = useState('');
+    const [isMainImage, setMainImage] = useState('');
+    const [isContent, setContent] = useState<{ type: 'h' | 'p' | 'q' | 'img'; data: string; }[]>([]);
 
     const addH = () => {
         setContent([...isContent, {
@@ -42,63 +47,75 @@ function NewPost() {
     }
 
     let postData: IPostFullData = {
-        id: 12,
+        id: 0,
         category: 1,
         date: moment().format("YYYY-MM-DD-HH-mm-ss"),
-        update: '',
+        updateDate: '',
         header: isMainHeader,
         description: isMainDescription,
-        imageUrl: '',
+        imageUrl: isMainImage,
         views: 0,
         likes: 0,
         comments: 0,
         content: isContent,
     }
 
-    const result = () => {
-        console.log(postData)
+    const result = async () => {
+        console.log(postData);
+        try {
+            const response = await axios.post('/api/post-publication', postData);
+
+            if (response.status === 200) {
+                console.log('Post published successfully');
+                router.push('/');
+            } else {
+                console.error('Error publishing post:', response.status);
+                // Обработка ошибки при публикации
+            }
+        } catch (error) {
+            console.error('CLIENT Error publishing post:', error);
+            // Обработка ошибки при публикации
+        }
     }
 
 
-    const API_KEY = '6d207e02198a847aa98d0a2a901485a5';
 
-    const [image, setImage] = useState<File | null>(null);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedImage = e.target.files?.[0];
-        if (selectedImage) {
-            setImage(selectedImage);
-        }
-    };
+    // const [image, setImage] = useState<File | null>(null);
 
-    const handleUploadImage = async () => {
-        if (!image) {
-            console.error('Please select an image to upload.');
-            return;
-        }
+    // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const selectedImage = e.target.files?.[0];
+    //     if (selectedImage) {
+    //         setImage(selectedImage);
+    //     }
+    // };
 
-        const formData = new FormData();
-        formData.append('key', API_KEY);
-        formData.append('action', 'upload');
-        formData.append('source', image);
+    // сервер отправляет код 500
+    // const handleUploadImage = async () => {
+    //    const API_KEY = '6d207e02198a847aa98d0a2a901485a5';
+    //     if (!image) {
+    //         console.error('Изображение не выбрано');
+    //         return;
+    //     }
 
-        try {
-            const response = await fetch('https://freeimage.host/api/1/upload', {
-                method: 'POST',
-                body: formData,
-            });
+    //     const formData = new FormData();
+    //     formData.append('key', API_KEY);
+    //     formData.append('action', 'upload');
+    //     formData.append('source', image);
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Image uploaded successfully:', data);
-            } else {
-                console.error('Image upload failed.');
-            }
-        } catch (error) {
-            console.error('Error uploading image:', error);
-        }
+    //     try {
+    //         const response = await axios.post('http://freeimage.host/api/1/upload/', formData);
 
-    };
+    //         if (response.status === 200) {
+    //             const data = response.data;
+    //             console.log('Image uploaded successfully:', data);
+    //         } else {
+    //             console.error('Image upload failed.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error uploading image:', error);
+    //     }
+    // };
 
     return (
 
@@ -151,14 +168,22 @@ function NewPost() {
                         bgcolor: "#f2f2f2"
                     }}
                 >
-                    <Input
+                    <TextField
+                        label="Ссылка изображения"
+                        variant="outlined"
+                        value={isMainImage}
+                        onChange={(e) => {
+                            setMainImage(e.target.value);
+                        }}
+                    />
+                    {/* <Input
                         type="file"
                         inputProps={{ accept: 'image/*' }}
                         onChange={handleImageChange}
                     />
                     <Button variant="contained" onClick={handleUploadImage}>
                         Upload Image
-                    </Button>
+                    </Button> */}
                 </Paper>
 
                 {isContent.map((content, key) => {

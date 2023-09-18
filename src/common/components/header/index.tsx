@@ -8,14 +8,21 @@ import MenuButton from '../menu-button';
 import SignModal from '../sign-modal';
 import useAuthorization from '@/common/hooks/useAuthorization';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 
 function Header() {
+
+    const router = useRouter();
 
     const setSignModal = useAuthorization((state) => state.setModal)
     const isAuth = useAuthorization((state) => state.auth)
     const signOut = useAuthorization((state) => state.signOut)
     
+    const navigateNewPost = () => {
+        router.push('/new-post');
+
+    }
     return (
         <Box
             sx={{
@@ -81,6 +88,7 @@ function Header() {
                             bgcolor: '#fff',
                             color: '#595959'
                         }}
+                        onClick={navigateNewPost}
                     >
                         Создать
                     </Button>

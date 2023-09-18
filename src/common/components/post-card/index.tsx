@@ -26,7 +26,7 @@ function PostCard({ data }: IProps) {
                 <PostCategoryAndDate
                     categoryValue={data.category}
                     date={data.date}
-                    update={data.update}
+                    update={data.updateDate}
                 />
 
                 <Link
